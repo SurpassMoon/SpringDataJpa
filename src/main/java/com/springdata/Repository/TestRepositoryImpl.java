@@ -1,10 +1,12 @@
 package com.springdata.Repository;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
@@ -27,12 +29,25 @@ public class TestRepositoryImpl implements TestRepository {
 	}
 	
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		/*ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
 		TestRepository bean = context.getBean("testRepository",TestRepository.class);
 		Collection<User> users = bean.getAllUser();
 		for (User user : users) {
 			System.out.println(user.getName());
+		}*/
+		
+		try {
+			
+			
+			User bean = new User();
+			bean.setName("lizhe");
+			String property = BeanUtils.getProperty(bean, "name");
+			System.out.println(property);
+		} catch (IllegalAccessException | InvocationTargetException
+				| NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
