@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import com.springdata.model.Role;
 import com.springdata.model.User;
 
 
@@ -26,6 +27,13 @@ public class TestRepositoryImpl implements TestRepository {
 		
 	}
 	
+	@Override
+	public User getUserJoinRole() {
+		return (User) this.em.createQuery("from User as u left outer join fetch u.roles ")
+				.getResultList().get(0);
+		
+	}
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
@@ -33,6 +41,11 @@ public class TestRepositoryImpl implements TestRepository {
 		Collection<User> users = bean.getAllUser();
 		for (User user : users) {
 			System.out.println(user.getName());
+		}
+		
+		User user = bean.getUserJoinRole();
+		for (Role role : user.getRoles()) {
+			System.out.println(role.getName());
 		}
 		
 	}
