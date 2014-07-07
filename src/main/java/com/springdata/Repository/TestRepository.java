@@ -29,4 +29,6 @@ public interface TestRepository {
 	 */
 	Collection<User> getAllUser();
 
+	User getUserJoinRole();
+
 }

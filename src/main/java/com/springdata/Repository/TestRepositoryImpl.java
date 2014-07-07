@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import com.springdata.model.Role;
 import com.springdata.model.User;
 
 
@@ -25,6 +26,13 @@ public class TestRepositoryImpl implements TestRepository {
 		return this.em.createQuery(
 				"select user from User user order by id")
 				.getResultList();
+		
+	}
+	
+	@Override
+	public User getUserJoinRole() {
+		return (User) this.em.createQuery("from User as u left outer join fetch u.roles ")
+				.getResultList().get(0);
 		
 	}
 	
@@ -48,6 +56,11 @@ public class TestRepositoryImpl implements TestRepository {
 				| NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		User user = bean.getUserJoinRole();
+		for (Role role : user.getRoles()) {
+			System.out.println(role.getName());
 		}
 		
 	}
