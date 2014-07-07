@@ -1,12 +1,11 @@
 package com.springdata.Repository;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
@@ -16,6 +15,7 @@ import com.springdata.model.User;
 
 
 @Repository("testRepository")
+
 public class TestRepositoryImpl implements TestRepository {
 	
 	@PersistenceContext
@@ -28,6 +28,19 @@ public class TestRepositoryImpl implements TestRepository {
 				.getResultList();
 		
 	}
+	@Override
+	@Transactional
+	public String save (User user) throws RuntimeException {
+	  try{
+		    em.persist(user);  
+	    return "employee.dao保存成功";
+	   }
+	   catch(Exception e){
+	    return "employee.dao保存出错";
+	   }
+		
+	}
+	
 	
 	@Override
 	public User getUserJoinRole() {
@@ -36,33 +49,30 @@ public class TestRepositoryImpl implements TestRepository {
 		
 	}
 	
-	public static void main(String[] args) {
-		/*ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		
-		TestRepository bean = context.getBean("testRepository",TestRepository.class);
-		Collection<User> users = bean.getAllUser();
-		for (User user : users) {
-			System.out.println(user.getName());
-		}*/
-		
+	public static void main (String[] args) {
 		try {
+			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+			TestRepository bean = context.getBean("testRepository",TestRepository.class);
 			
+			Collection<User> users = bean.getAllUser();
+			for (User user : users) {
+				System.out.println(user.getName());
+			}
 			
-			User bean = new User();
-			bean.setName("lizhe");
-			String property = BeanUtils.getProperty(bean, "name");
-			System.out.println(property);
-		} catch (IllegalAccessException | InvocationTargetException
-				| NoSuchMethodException e) {
+			User user = bean.getUserJoinRole();
+			for (Role role : user.getRoles()) {
+				System.out.println(role.getName());
+			}
+			
+			User user2 = new User();
+			user2.setName("hahahha");
+			user2.setRoles(null);
+			bean.save(user2);
+			System.out.println(user2.getId());
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		User user = bean.getUserJoinRole();
-		for (Role role : user.getRoles()) {
-			System.out.println(role.getName());
-		}
-		
 	}
 	
 }

@@ -31,4 +31,12 @@ public interface TestRepository {
 
 	User getUserJoinRole();
 
+	/**
+	 * <p>Title: save</p>
+	 * <p>Description: </p>
+	 * @param user
+	 * @return 
+	 */
+	String save(User user);
+
 }

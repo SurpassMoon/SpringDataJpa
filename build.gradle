@@ -4,8 +4,8 @@ apply plugin: 'jetty'
 apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 version = '1.0'
 jar {
@@ -27,6 +27,10 @@ dependencies {
     compile 'org.springframework.data:spring-data-jpa:1.6.0.RELEASE'
     compile 'org.springframework.data:spring-data-commons-core:1.4.1.RELEASE'
     compile 'org.springframework:spring-web:4.0.5.RELEASE'
+    compile "org.springframework:spring-test:4.0.5.RELEASE"
+    compile "org.springframework:spring-tx:4.0.5.RELEASE"
+    compile "org.springframework:spring-orm:4.0.5.RELEASE"
+    compile "org.springframework:spring-oxm:4.0.5.RELEASE"
     compile 'org.hibernate:hibernate-entitymanager:4.3.5.Final'
     
     compile 'c3p0:c3p0:0.9.1.2'
