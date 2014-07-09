@@ -20,7 +20,7 @@ import com.springdata.model.User;
  * @author lizhe
  * @date 2014年6月30日
  */
-public interface TestRepository {
+public interface UserRepository {
 
 	/**
 	 * <p>Title: getAllUser</p>
