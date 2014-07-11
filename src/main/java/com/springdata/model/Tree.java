@@ -35,6 +35,8 @@ public class Tree {
 	@Column(name="name")
 	private String name;
 
+	private Integer level;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -51,7 +53,7 @@ public class Tree {
 		this.name = name;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "pid")
 	private Tree tree;
 	
@@ -72,6 +74,14 @@ public class Tree {
 
 	public void setTrees(List<Tree> trees) {
 		this.trees = trees;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
 	}
 	
 	
