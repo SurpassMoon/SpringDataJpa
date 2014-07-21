@@ -7,6 +7,15 @@ apply plugin: 'eclipse-wtp'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
+[compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:all']
+[compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
+
+javadoc {
+    options.encoding = "UTF-8"
+    options.docEncoding = "UTF-8"
+    options.charSet = "UTF-8"
+}
+
 version = '1.0'
 jar {
     manifest {
