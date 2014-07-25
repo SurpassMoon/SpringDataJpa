@@ -7,6 +7,15 @@ apply plugin: 'eclipse-wtp'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
+[compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:all']
+[compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
+
+javadoc {
+    options.encoding = "UTF-8"
+    options.docEncoding = "UTF-8"
+    options.charSet = "UTF-8"
+}
+
 version = '1.0'
 jar {
     manifest {
@@ -39,7 +48,7 @@ dependencies {
     compile "ch.qos.logback:logback-classic:1.1.0"
     compile 'mysql:mysql-connector-java:5.1.31'
     
-    compile 'commons-beanutils:commons-beanutils:1.9.2'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
 }
 
 test {

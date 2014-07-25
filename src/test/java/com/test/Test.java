@@ -11,19 +11,19 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.springdata.Repository.TestRepository;
-import com.springdata.Repository.TestRepositoryImpl;
+import com.springdata.Repository.UserRepository;
+import com.springdata.Repository.UserRepositoryImpl;
 import com.springdata.model.User;
 
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 @TransactionConfiguration(defaultRollback=false)
-public class Test extends TestRepositoryImpl {
+public class Test extends UserRepositoryImpl {
 
 	@Autowired
 	@Qualifier("testRepository")
-    protected TestRepository bean;
+    protected UserRepository bean;
 	
 	@Before
 	public void setUp() throws Exception {

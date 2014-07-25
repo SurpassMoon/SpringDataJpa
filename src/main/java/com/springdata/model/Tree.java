@@ -6,12 +6,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,8 +25,8 @@ import javax.persistence.Table;
  * @date 2014年6月30日
  */
 @Entity
-@Table(name="user")
-public class User {
+@Table(name="tree")
+public class Tree {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +35,7 @@ public class User {
 	@Column(name="name")
 	private String name;
 
-	@ManyToMany(cascade = CascadeType.REFRESH) 
-	@JoinTable(
-	name = "user_role", 
-	joinColumns = @JoinColumn(name = "uid", referencedColumnName="id"),
-    inverseJoinColumns = @JoinColumn(name = "rid", referencedColumnName="id"))
-	private List<Role> roles;
-	
-	private String[] num;
+	private Integer level;
 	
 	public Integer getId() {
 		return id;
@@ -49,7 +45,6 @@ public class User {
 		this.id = id;
 	}
 
-	
 	public String getName() {
 		return name;
 	}
@@ -58,23 +53,36 @@ public class User {
 		this.name = name;
 	}
 
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "pid")
+	private Tree tree;
+	
+	@OneToMany( mappedBy = "tree")
+	private List<Tree> trees;
 
-	public String[] getNum() {
-		return num;
+	public Tree getTree() {
+		return tree;
 	}
 
-	public void setNum(String[] num) {
-		this.num = num;
+	public void setTree(Tree tree) {
+		this.tree = tree;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
+	public List<Tree> getTrees() {
+		return trees;
 	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setTrees(List<Tree> trees) {
+		this.trees = trees;
 	}
 
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
 	
 	
 }

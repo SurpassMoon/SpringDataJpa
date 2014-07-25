@@ -14,9 +14,8 @@ import com.springdata.model.Role;
 import com.springdata.model.User;
 
 
-@Repository("testRepository")
-
-public class TestRepositoryImpl implements TestRepository {
+@Repository("userRepository")
+public class UserRepositoryImpl implements UserRepository {
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -52,9 +51,9 @@ public class TestRepositoryImpl implements TestRepository {
 	public static void main (String[] args) {
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-			TestRepository bean = context.getBean("testRepository",TestRepository.class);
+			UserRepository bean = context.getBean("userRepository",UserRepository.class);
 			
-			Collection<User> users = bean.getAllUser();
+			/*Collection<User> users = bean.getAllUser();
 			for (User user : users) {
 				System.out.println(user.getName());
 			}
@@ -68,7 +67,8 @@ public class TestRepositoryImpl implements TestRepository {
 			user2.setName("hahahha");
 			user2.setRoles(null);
 			bean.save(user2);
-			System.out.println(user2.getId());
+			System.out.println(user2.getId());*/
+			bean.getAllUser();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,0 +1,74 @@
+Found a 19 line (47 tokens) duplication in the following files: 
+Starting at line 44 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\User.java
+Starting at line 33 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\Role.java
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String[] getNum() {
+=====================================================================
+Found a 16 line (46 tokens) duplication in the following files: 
+Starting at line 44 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\User.java
+Starting at line 40 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\Tree.java
+Starting at line 33 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\Role.java
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+=====================================================================
+Found a 10 line (28 tokens) duplication in the following files: 
+Starting at line 26 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\User.java
+Starting at line 21 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\Role.java
+
+public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(name="name")
+	private String name;
+
+	@ManyToMany(cascade = CascadeType.REFRESH) 
+=====================================================================
+Found a 8 line (25 tokens) duplication in the following files: 
+Starting at line 26 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\User.java
+Starting at line 29 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\Tree.java
+Starting at line 21 of G:\sts\SpringDataJpa\src\main\java\com\springdata\model\Role.java
+
+public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(name="name")
+	private String name;
